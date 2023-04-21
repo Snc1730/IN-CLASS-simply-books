@@ -1,5 +1,5 @@
-import React from 'react';
+import UserData from '../components/UserComponent';
 
 export default function Profile() {
-  return <div>profile here</div>;
+  return UserData();
 }
