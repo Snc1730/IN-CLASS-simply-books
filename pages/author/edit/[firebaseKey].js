@@ -1,8 +1,15 @@
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { getSingleAuthor } from '../../../api/authorData';
+import AuthorForm from '../../../components/forms/AuthorForm';
 
-export default function ViewAuthor() {
+export default function EditAuthor() {
+  const [editAuth, setEditAuth] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
 
-  return <div>New Author Here {firebaseKey}</div>;
+  useEffect(() => {
+    getSingleAuthor(firebaseKey).then(setEditAuth);
+  }, [firebaseKey]);
+  return (<AuthorForm obj={editAuth} />);
 }
